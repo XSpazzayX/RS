@@ -1,1 +1,1 @@
-# Zadaće iz raspodijeljenjih sustava FIPU
+# Zadaće iz raspodijeljenih sustava FIPU
