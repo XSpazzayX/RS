@@ -62,6 +62,23 @@ async def main_2():
 
     return [result1]
 
+
+async def main_3():
+    # Ručno loopamo i provjeravamo jel task završen
+    # Vračamo kontrolu event loopu da može radit 
+    # napredak na tasku sa asyncio.sleep(0)
+    task1 = asyncio.create_task(fetch_data(1)) # schedule
+    task2 = asyncio.create_task(fetch_data(2)) # schedule
+    result1 = await task1
+    print("Fetch 1 uspješno završen.")
+    
+    while not task2.done():
+        await asyncio.sleep(0)
+    
+    print("Fetch 2 uspješno završen.", task2.result())
+    
+    return [result1]
+
 if __name__ == "__main__":
     t1 = time.perf_counter()
     results = asyncio.run(main_1())
@@ -71,6 +88,12 @@ if __name__ == "__main__":
 
     t1 = time.perf_counter()
     results = asyncio.run(main_2())
+    t2 = time.perf_counter()
+    print(results)
+    print(f"Vrijeme izvođenja {t2 - t1:.2f} sekunde")
+
+    t1 = time.perf_counter()
+    results = asyncio.run(main_3())
     t2 = time.perf_counter()
     print(results)
     print(f"Vrijeme izvođenja {t2 - t1:.2f} sekunde")
