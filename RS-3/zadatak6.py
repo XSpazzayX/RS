@@ -48,6 +48,7 @@ async def main_1():
 
 async def main_2():
     # Drugi nacin je da cekamo sve taskove iskljucivsi trenutacni task
+    # ili naravno ako je dopušteno u zadataku  možemo gatherat task1 i task2 eksplicitno sa asyncio.gather
     task1 = asyncio.create_task(fetch_data(1))
     task2 = asyncio.create_task(fetch_data(2))
 
